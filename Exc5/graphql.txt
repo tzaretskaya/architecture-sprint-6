@@ -1,0 +1,67 @@
+type Query {
+    client(id: ID!): Client
+    clients(): [Client]
+    relatives(clientId: ID!): [Relative]
+    documents(clientId: ID!): [Document]
+}
+
+type Client {
+    id: ID!
+    version: Int
+    name: String
+    email: String
+    phoneNumber: String
+    passport: String
+}
+
+type Relative {
+    id: ID!
+    version: Int
+    name: String
+    email: String
+}
+
+type Document {
+    id: ID!
+    version: Int
+    name: String
+    url: String
+}
+
+//для отображения полной информации о клиенте в InsureTech Web
+query {
+ client(clientId: "client1") {
+    id: ID!
+    name: String
+    email: String
+    phoneNumber: String
+    passport: String
+ }
+}
+
+//для отображения списка клиентов в core-app
+query {
+ clients() {
+   id: ID!
+   name: String
+ }
+}
+
+//для отображения списка родственников клиента
+query {
+ relatives(clientId: "client1") {
+    id: ID!
+    version: Int
+    name: String
+    email: String
+ }
+}
+//для отображения списка документов клиента
+query {
+ documents(clientId: "client1") {
+   id: ID!
+   version: Int
+   name: String
+   url: String
+ }
+}
